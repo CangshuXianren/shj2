@@ -1,0 +1,9 @@
+<launch>
+    <param name = "set_port" type="int" value = "8002"/>
+    <param name = "log_mode" type="bool" value = "true"/>
+
+    <node pkg = "monitor" type = "bridge" name = "bridge" output = "screen" >  
+        
+    </node>
+
+</launch>

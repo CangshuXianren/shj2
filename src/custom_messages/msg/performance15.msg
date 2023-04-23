@@ -1,0 +1,3 @@
+float64 lateral_position_error
+float64 yaw_angular_error
+float64 follow_distance_error

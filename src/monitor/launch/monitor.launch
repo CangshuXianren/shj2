@@ -1,0 +1,10 @@
+<launch>
+
+    <node pkg = "monitor" type = "monitor" name = "monitor" output = "screen" >  
+        <param name = "monitor_hz" type="double" value = "1.0"/>
+        <param name = "lateral_tolerance" type="double" value = "0.8"/>
+        <param name = "yaw_tolerance" type="double" value = "0.523598767"/>
+        <param name = "longitudinal_tolerance" type="double" value = "1.4"/>
+    </node>
+
+</launch>

@@ -1,0 +1,45 @@
+<launch>
+
+<arg name="map_size_x" default="10.0"/>
+<arg name="map_size_y" default="10.0"/>
+
+<arg name="start_x" default=" 0.0"/>
+<arg name="start_y" default=" 0.0"/>
+
+<node pkg = "rviz" type = "rviz" name = "rviz" output = "screen" args="-d $(find routing)/launch/rviz_config/rrtstar.rviz" required = "true"/>
+
+  <node pkg="routing" type="rrtstar_node" name="rrtstar_node" output="screen" required = "true">
+      <remap from="~waypoints"       to="/move_base_simple/goal"/>
+      <remap from="~map"             to="/random_complex/global_map"/> 
+
+      <param name="map/margin"       value="0.0" />
+      <param name="map/resolution"   value="0.2" />
+      <param name="map/x_size"       value="$(arg map_size_x)"/>
+      <param name="map/y_size"       value="$(arg map_size_y)"/>
+
+      <param name="planning/start_x" value="$(arg start_x)"/>
+      <param name="planning/start_y" value="$(arg start_y)"/>
+  </node>
+
+  <node pkg ="routing" name ="random_complex" type ="random_complex" output = "screen">    
+    
+      <param name="init_state_x"   value="$(arg start_x)"/>
+      <param name="init_state_y"   value="$(arg start_y)"/>
+
+      <param name="map/x_size"     value="$(arg map_size_x)" />
+      <param name="map/y_size"     value="$(arg map_size_y)" />
+
+      <param name="map/circle_num" value="40"/>        
+      <param name="map/obs_num"    value="300"/>        
+      <param name="map/resolution" value="0.1"/>        
+
+      <param name="ObstacleShape/lower_rad" value="0.1"/>
+      <param name="ObstacleShape/upper_rad" value="0.7"/>
+
+      <param name="CircleShape/lower_circle_rad"   value="0.6"/>        
+      <param name="CircleShape/upper_circle_rad"   value="2.0"/>        
+      
+      <param name="sensing/rate"   value="0.5"/>        
+  </node>
+
+</launch>

@@ -1,0 +1,24 @@
+<launch>
+
+  <group ns = "No_0">
+    <node pkg = "trailing_mpc" type = "virtual_base" name = "virtual_base" output = "screen">  
+
+    </node>
+
+    <node pkg = "trailing_mpc" type = "virtual_environment" name = "virtual_environment" output = "screen">  
+      <!-- <remap from="virtual_obstacle_info" to="tmp"/> -->
+    </node>
+  </group>
+
+  <group ns = "No_1">
+
+    <node pkg = "trailing_mpc" type = "virtual_base" name = "virtual_base" output = "screen">  
+
+    </node>
+    <node pkg = "trailing_mpc" type = "virtual_environment" name = "virtual_environment" output = "screen">  
+
+    </node>
+
+  </group>
+
+</launch>

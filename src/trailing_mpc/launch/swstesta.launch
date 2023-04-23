@@ -1,0 +1,45 @@
+<launch>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find trailing_mpc)/vs.yaml" output="screen">
+      <param name="frame_id" value="map"/>
+	</node>
+  <node pkg = "rviz" type = "rviz" name = "rviza" output = "screen" args="-d $(find trailing_mpc)/launch/rviz_config/number1.rviz" required = "true"/>
+
+  <param name = "formation_type" value = "0"/>
+  
+  <group ns = "number1">
+    <param name = "vmin" value = "0.0"/>
+    <param name = "vmax" value = "1.0"/>
+    <param name = "wmin" value = "-0.7854"/>
+    <param name = "wmax" value = "0.7854"/>
+    <param name = "overall_length" value = "2.715"/>
+    <param name = "ID" value = "0"/>
+    <param name = "tolerance" value = "0.1"/>
+
+    <node pkg = "trailing_mpc" type = "mpc_node" name = "mpc_node" output = "screen" required = "true">  
+      <remap from="self_location" to="myodom"/>
+      <!-- <remap from="/cmd_vel" to="tmp"/> -->
+
+      <param name = "delta_v" value = "0.05"/>
+      <param name = "delta_w" value = "0.05"/>
+      <param name = "Nx" value = "3"/>
+      <param name = "Nu" value = "2"/>
+      <param name = "Np" value = "60"/>
+      <param name = "Nc" value = "30"/>
+      <param name = "Row" value = "10"/>
+      <param name = "q1" value = "10"/>
+      <param name = "q2" value = "10"/>
+      <param name = "q3" value = "1"/>
+      <param name = "r1" value = "0"/>
+      <param name = "r2" value = "0"/>
+      <param name = "mpc_hz" value = "5"/>
+    </node>
+
+    <include file="$(find gps2xy)/launch/loc15.launch"/>
+    <include file="$(find local_planning)/launch/dwa15.launch"/>
+    <include file="$(find perception)/launch/perceive.launch"/>
+    <include file="$(find routing)/launch/astar.launch"/>
+  </group>
+
+
+
+</launch>

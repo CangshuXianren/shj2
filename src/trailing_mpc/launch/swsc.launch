@@ -1,0 +1,54 @@
+<launch>
+  <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(find trailing_mpc)/vs.yaml" output="screen">
+      <param name="frame_id" value="map"/>
+	</node> -->
+
+  <node pkg = "rviz" type = "rviz" name = "rvizc" output = "screen" args="-d $(find trailing_mpc)/launch/rviz_config/number3.rviz"/>
+  
+  <group ns = "number3">
+    <param name = "recv_ID" type="int" value = "2"/>
+    <param name = "recv_target_ID" type="int" value = "0"/>
+
+    <param name = "vmin" type="double" value = "0.0"/>
+    <param name = "vmax" type="double" value = "2.5"/>
+    <param name = "wmin" type="double" value = "-0.54"/>
+    <param name = "wmax" type="double" value = "0.54"/>
+    <!-- <param name = "wmin" value = "-0.7854"/>
+    <param name = "wmax" value = "0.7854"/> -->
+    <param name = "overall_length" type="double" value = "0.7"/>
+    <param name = "headway" type="double" value = "30"/>
+    <param name = "time_headway" type="double" value = "0.6"/>
+
+    <param name = "Kp" type="double" value = "0.2"/>
+    <param name = "Ki" type="double" value = "0.0"/>
+    <param name = "Kd" type="double" value = "0.0"/>
+    <param name = "max_deceleration" type="double" value = "0.3"/>
+    <param name = "max_acceleration" type="double" value = "0.3"/>
+
+    <param name = "wheel_base" type="double" value = "0.452"/>
+    <param name = "cf" type="double" value = "-10000"/>
+    <param name = "cr" type="double" value = "-10000"/>
+    <param name = "weight" type="double" value = "25.0"/>
+    <param name = "a" type="double" value = "0.226"/>
+    <param name = "b" type="double" value = "0.226"/>
+
+    <param name = "lqr_q1" type="double" value = "10.0"/>
+    <param name = "lqr_q2" type="double" value = "1.0"/>
+    <param name = "lqr_q3" type="double" value = "1.0"/>
+    <param name = "lqr_q4" type="double" value = "1.0"/>
+    <param name = "lqr_r" type="double" value = "1.0"/>
+    <param name = "forecast_time" type = "double" value = "2.5"/>
+    <param name = "reconfiguration_duration" type = "double" value = "3.0"/>
+    <param name = "merge_lateral_threshold" type="double" value = "0.15"/>
+    <param name = "merge_yaw_threshold" type="double" value = "0.261799383"/>
+
+    <node pkg = "trailing_mpc" type = "emlike15" name = "emlike15" output = "screen" required = "true">  
+      <param name = "emlike15_hz" type="double" value = "25.0"/>
+    </node>
+
+    <include file="$(find local_planning)/launch/cs15_planner.launch"/>
+  </group>
+
+
+
+</launch>

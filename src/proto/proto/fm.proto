@@ -1,0 +1,99 @@
+syntax = "proto2";
+package yw.v2xclient.proto;
+message position  //绝对位置 
+{
+	optional double x = 1;  
+	optional double y = 2;
+	optional double z = 3;
+}
+
+message gps_position //定位信息	
+{
+	required double latitude = 1;  //纬度
+	required double longitude = 2;  //经度
+	optional double altitude = 3;  //高度
+}
+
+message pose  //姿态信息
+{
+	optional double roll = 1;  //横滚角 
+	optional double pitch = 2;  //俯仰角 
+	optional double yaw = 3;  //航向角 
+}
+message orientation  //姿态信息-四元数
+{
+	optional double x = 1;
+	optional double y = 2;
+	optional double z = 3;
+	optional double w = 4;
+}
+message linear_velocity  //线速度信息
+{
+	required double x = 1;
+	optional double y = 2;
+    optional double z = 3;
+}
+
+message angular_velocity  //角速度信息
+{
+	optional double x = 1;
+	optional double y = 2;
+    required double z = 3;
+}
+
+message performance  //跟车性能
+{
+	optional double lateral_position_error = 1;  //横向位置偏差
+	optional double yaw_angular_error = 2;  //航向角偏差  
+	optional double follow_distance_error =3;  //跟车距离偏差
+}
+message target_information //车的跟踪目标信息
+{
+	optional position position_ = 1;//绝对位置
+	optional pose pose_ = 2; //姿态信息
+}
+
+message follow_information  //车的跟踪目标和跟车距离
+{
+	optional target_information target_information_ = 1;//车的跟踪目标信息
+	optional double follow_distance_ = 2;  // 车的跟车距离
+}
+
+message Chief_cmd  //发布总控指令
+{
+   required string name_ = 1 [default = "number1"];
+   required double time_ = 2;  // 时间戳
+   required int32 B_formatio_state_ = 3;  //0表示离队状态，1表示编队状态,  2伴随行驶
+   required int32 C_formatio_state_ = 4;  //0表示离队状态，1表示编队状态
+   optional follow_information B_follow_information_ = 5; //B车的跟踪目标和跟车距离
+   optional follow_information C_follow_information_ = 6; //C车的跟踪目标和跟车距离
+}
+
+message odom  //各车辆发布状态信息
+{
+   required string name_ = 1 [default = "number1"];
+   required double time_ = 2;  // 时间戳
+   required int32 self_state_ = 3;     //0表示离队状态，1表示编队状态，只有1是编队状态的时候编队过程才起作用
+   optional int32 request_ = 4;  //0无申请，1申请离队，2申请入队
+   optional gps_position gps_position_ = 5;
+   optional position position_ = 6;//绝对位置
+   optional pose pose_ = 7; //姿态信息
+   optional orientation orientation_ = 8; //姿态信息-四元数
+   optional linear_velocity linear_velocity_ = 9; //线速度信息
+   optional angular_velocity angular_velocity_ = 10; //角速度信息
+   optional performance performance_ = 11;
+}
+enum Msg_Type{
+	Chief = 0;
+	ODOM = 1;
+}
+message FormationMsg
+{
+	required Msg_Type msg_type_ = 1;
+	optional Chief_cmd chief_cmd_= 2;
+	optional odom odom_ = 3;
+	// oneof f_msg{
+	// 	Chief_cmd chief_cmd_= 2;
+	// 	odom odom_ = 3;
+	// }
+}

@@ -1,0 +1,21 @@
+<launch>
+
+    <param name="v_resolution" type="double" value="20"/>
+    <param name="yaw_rate_resolution" type="double" value="20"/>
+    <param name="dt" type="double" value="0.1"/>
+    <param name="predict_time" type="double" value="2.0"/>
+    <param name="goal_cost_gain" type="double" value="0.6"/>
+    <param name="speed_cost_gain" type="double" value="1.0"/>
+    <node pkg="local_planning" type="dwa" name="dwa" output="screen" required="true" >
+      <remap from="self_location" to="myodom"/>
+      <remap from = "slam_ret" to = "/map"/>
+      <param name = "dv" value = "1.0"/>
+      <param name = "dw" value = "0.5"/>
+      <param name = "dwa_hz" value = "2"/>
+      <param name = "avoid_mode" value = "1"/>
+      <param name="forecast_time" type="double" value="2.0"/>
+      
+    </node>
+
+
+</launch>

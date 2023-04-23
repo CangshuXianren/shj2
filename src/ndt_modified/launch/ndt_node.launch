@@ -1,0 +1,30 @@
+<launch>
+	<arg name="rviz" default="false" />
+
+	<param name="leaf_size_map" type="double" value="0.1"/>
+	<param name="leaf_size_ndt" type="double" value="0.2"/>
+	<param name="step_size" type="double" value="0.2"/>
+	<param name="step_size3" type="double" value="0.2"/>
+	<param name="max_ite" type="int" value="30"/>
+	<!-- 0.2: 7e3, 0.1: 3e4 -->
+	<param name="merge_num" type="int" value="30000"/>
+
+	<node pkg="ndt_test" type="ndt_node" name="ndt_node" output="screen"> 
+		<remap from="map0" to="/No_0/map" />
+		<remap from="map1" to="/No_1/map" />
+		<remap from="map2" to="/No_2/map" />
+		<remap from="map3" to="/No_3/map" />
+		<remap from="initialpose0" to="/No_0/initialpose" />
+		<remap from="initialpose1" to="/No_1/initialpose" />
+		<remap from="initialpose2" to="/No_2/initialpose" />
+		<remap from="initialpose3" to="/No_3/initialpose" />
+	</node>
+
+	<!--node pkg="rosbag" type="play" name="rosbag_play" args="/media/yxt/storage/PointCloud_merging/src/ndt_modified/rosbag/merge_123.bag"/-->
+	<!-- <node pkg="ndt_test" type="pcd_save" name="pcd_save" output="screen" /> -->
+
+	<group if="$(arg rviz)">
+	<node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find ndt_test)/rviz_cfg/ndt_test.rviz" />
+	</group>
+
+</launch>

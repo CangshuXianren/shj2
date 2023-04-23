@@ -1,0 +1,9 @@
+<launch>
+
+
+    <node pkg="gps2xy" type="loc15" name="loc15" output="screen" required="true">
+        <param name = "offset_2" type="bool" value = "true"/>
+    </node>
+
+
+</launch>

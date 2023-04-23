@@ -1,0 +1,10 @@
+<launch>
+
+    <node pkg="perception" type="perceive" name="perceive" output="screen" required="true" >
+      <remap from = "self_location" to = "odom"/>
+      <remap from = "slam_ret" to = "/map"/>
+      <param name = "offset_2" type="bool" value = "false"/>
+    </node>
+
+
+</launch>

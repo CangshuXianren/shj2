@@ -1,0 +1,35 @@
+<launch>
+
+  <group ns = "number1">
+    <node pkg = "trailing_mpc" type = "virtual_base" name = "virtual_base" output = "screen">  
+
+    </node>
+
+    <node pkg = "trailing_mpc" type = "virtual_environment" name = "virtual_environment" output = "screen">  
+
+    </node>
+  </group>
+
+  <group ns = "number2">
+
+    <node pkg = "trailing_mpc" type = "virtual_base" name = "virtual_base" output = "screen">  
+
+    </node>
+        <node pkg = "trailing_mpc" type = "virtual_environment" name = "virtual_environment" output = "screen">  
+
+    </node>
+
+  </group>
+
+    <group ns = "number3">
+
+    <node pkg = "trailing_mpc" type = "virtual_base" name = "virtual_base" output = "screen">  
+
+    </node>
+        <node pkg = "trailing_mpc" type = "virtual_environment" name = "virtual_environment" output = "screen">  
+
+    </node>
+
+  </group>
+
+</launch>

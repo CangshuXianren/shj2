@@ -1,0 +1,10 @@
+<launch>
+
+
+    <node pkg="gps2xy" type="self_gps2xy" name="self_gps2xy" output="screen" required="true">
+        <param name = "offset_2" type="bool" value = "false"/>
+        <param name = "sws_flag" type="bool" value = "true"/>
+    </node>
+
+
+</launch>

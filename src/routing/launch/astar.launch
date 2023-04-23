@@ -1,0 +1,16 @@
+<launch>
+
+    <arg name = "map_size_x" default = "10.0"/>
+    <arg name = "map_size_y" default = "10.0"/>
+
+    <node pkg = "routing" type = "astar_node" name = "astar_node" output = "screen" required = "true" >
+        <remap from = "waypoints" to = "/move_base_simple/goal_temp"/>
+        <remap from = "slam_ret" to = "/map"/>
+
+        <param name = "map/resolution" value = "0.2"/>
+        <param name = "map/x_size" value = "$(arg map_size_x)"/>
+        <param name = "map/y_size" value = "$(arg map_size_y)"/>
+    </node>
+
+
+</launch>

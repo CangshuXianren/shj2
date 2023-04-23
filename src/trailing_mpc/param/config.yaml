@@ -1,0 +1,25 @@
+add_lateral_threshold: 0.2
+add_yaw_threshold: 0.174532925
+vmin : 0.0
+vmax : 3.0
+wmax: 0.54
+headway : 1.5
+time_headway : 0.6
+Kp : 0.25
+Ki : 0.0
+Kd : 0.0
+max_deceleration : 0.3
+max_acceleration : 0.3
+Kp2 : 0.25
+Ki2 : 0.05
+Kd2 : 0.0
+Kp1 : 0.45
+Kd1 : 0.25
+lqr_q1 : 20.0
+lqr_q2 : 1.0
+lqr_q3 : 5.0
+lqr_q4 : 1.0
+lqr_r : 0.0
+forecast_time : 0.8
+reconfiguration_duration : 3.0
+emlike_hz : 25.0

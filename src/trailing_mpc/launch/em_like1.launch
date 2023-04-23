@@ -1,0 +1,37 @@
+<launch>
+
+  <node pkg = "rviz" type = "rviz" name = "rviz1" output = "screen" args="-d $(find trailing_mpc)/launch/rviz_config/no1.rviz"/>
+
+  <group ns = "No_1">
+    <rosparam command="load" file="$(find trailing_mpc)/param/config.yaml" />
+
+    <param name = "overall_length" value = "0.7"/>
+    <param name = "ID" value = "1"/>
+    <param name = "controller_type" type="int" value = "1"/>
+    <param name = "wheel_base" value = "0.452"/>
+    <param name = "cf" value = "-10000"/>
+    <param name = "cr" value = "-10000"/>
+    <param name = "weight" value = "25.0"/>
+    <param name = "a" value = "0.226"/>
+    <param name = "b" value = "0.226"/>
+    <param name = "lqr_q1" value = "20.0"/>
+    <param name = "lqr_q2" value = "1.0"/>
+    <param name = "lqr_q3" value = "5.0"/>
+    <param name = "lqr_q4" value = "1.0"/>
+    <param name = "lqr_r" value = "0.0"/>
+    <param name = "forecast_time" type = "double" value = "0.5"/>
+    <param name = "reconfiguration_duration" type = "double" value = "3.0"/>
+
+    <node pkg = "trailing_mpc" type = "em_like" name = "EMcontroller_node" output = "screen" required = "true">  
+      <!-- <remap from="cmd_vel" to="tmp"/> -->
+    </node>
+
+    <include file="$(find gps2xy)/launch/self_gps2xy.launch"/>
+    <include file="$(find local_planning)/launch/cubic_spline_planner.launch"/>
+    <include file="$(find perception)/launch/perceive.launch"/>
+    <include file="$(find rs_to_velodyne)/launch/rs2velodyne.launch"/>
+  </group>
+
+
+
+</launch>

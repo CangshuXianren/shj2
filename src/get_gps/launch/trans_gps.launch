@@ -1,0 +1,11 @@
+<launch>
+
+  <!-- <group ns = "dubhe1">
+      <param name="location_info" type="string" value="nav982_raw"/>
+      <node pkg="get_gps" type="trans_gps" name="trans_gps" output="screen" respawn="true"/>
+  </group> -->
+
+  <param name="location_info" type="string" value="nav982_raw"/>
+  <node pkg="get_gps" type="trans_gps" name="trans_gps" output="screen" respawn="true"/>
+
+</launch>

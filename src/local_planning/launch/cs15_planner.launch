@@ -1,0 +1,14 @@
+<launch>
+
+    <node pkg="local_planning" type="cs15_planner" name="cs15_planner" output="screen" required="true">
+      <remap from = "slam_ret" to = "/map"/>
+      <param name = "cs15_hz" type="double" value = "5.0"/>
+      <param name = "avoid_obs_sample_step" type="double" value = "0.1"/>
+      <param name = "standard_step" type="double" value = "0.5"/>
+      <param name = "avoid_dynamic_mode" type="int" value = "0"/>
+      <param name = "avoid_static_mode" type="int" value = "0"/>
+      <param name = "only_ego_offset" type="double" value = "2.0"/>
+    </node>
+
+
+</launch>

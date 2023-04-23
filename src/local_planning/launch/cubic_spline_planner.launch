@@ -1,0 +1,13 @@
+<launch>
+
+    <node pkg="local_planning" type="cubic_spline_planner" name="spline_planner" output="screen" required="true">
+      <!-- <remap from="self_location" to="myodom"/> -->
+      <remap from = "slam_ret" to = "/map"/>
+      <param name = "cubic_spline_hz" type="double" value = "5.0"/>
+      <param name = "avoid_mode" type="int" value = "0"/>
+      <param name = "formation_length_unit" type="double" value = "1.0"/>
+      <param name = "standard_step" type="double" value = "0.1"/>
+    </node>
+
+
+</launch>

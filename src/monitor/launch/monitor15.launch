@@ -1,0 +1,13 @@
+<launch>
+    <param name = "set_port" type="int" value = "8002"/>
+
+    <node pkg = "monitor" type = "monitor15" name = "monitor15" output = "screen">  
+        <param name = "monitor_hz" type="double" value = "1.0"/>
+        <param name = "lateral_tolerance" type="double" value = "0.8"/>
+        <param name = "yaw_tolerance" type="double" value = "0.523598767"/>
+        <param name = "longitudinal_tolerance" type="double" value = "2.0"/>
+        <param name = "test_mode" type="bool" value = "false"/>
+        <param name = "start_check_button" type="bool" value = "false"/>
+    </node>
+
+</launch>

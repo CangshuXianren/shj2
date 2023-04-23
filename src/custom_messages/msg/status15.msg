@@ -1,0 +1,11 @@
+string name
+float64 time
+int32 self_state
+int32 request
+mygps gps_position
+myposition position
+mypose pose
+myorientation orientation
+myposition linear_velocity
+myposition angular_velocity
+performance15 performance
